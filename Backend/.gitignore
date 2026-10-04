@@ -1,2 +1,7 @@
 # Dependency directories (never upload this, it's massive)
 node_modules/
+
+
+.env
+.env.*
+!.env.example
