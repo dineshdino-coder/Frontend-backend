@@ -1,0 +1,353 @@
+/* 
+
+.container{
+  display: grid;
+  width: 480px;
+  height: 100vh;
+  place-self: center;
+  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-gap: 10px;
+  grid-template-areas: 
+    "one two two"
+    "one three four"
+    "five three six"
+    "five seven six"
+    "eig eig nin"
+    "ten ten ten";
+}
+
+.green{
+  grid-area: one;
+  background-color: green;
+}
+.blue-top{
+  grid-area: two;
+  background-color: lightblue;
+}
+.orange{
+  grid-area: three;
+  background-color: yellow;
+}
+.yellow{
+  grid-area: five;
+  background-color: orange;
+}
+.brown{
+  grid-area: four;
+  background-color: brown;
+}
+
+.red{
+  grid-area: seven;
+  background-color: red;
+}
+
+.indigo{
+  grid-area: six;
+  background-color: blueviolet;
+}
+.pink{
+  grid-area: eig;
+  background-color: pink;
+}
+.purple{
+  grid-area: nin;
+  background-color: purple;
+}
+.blue-bottom{
+  grid-area: ten;
+  background-color: burlywood;
+} */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 
+.container{
+  display: grid;
+  width: 780px;
+  height: 100vh;
+  place-self: center;
+  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-gap: 10px;
+  grid-template-areas:
+    "greenO blue-topO blue-topO"
+    "greenO yellowO brownO"
+    "orangeO yellowO indigoO"
+    "orangeO redO indigoO"
+    "pinkO pinkO purpleO"
+    "blue-bottomO blue-bottomO blue-bottomO";
+}
+
+.green{
+  grid-area: greenO;
+  background-color: #4caf50;
+}
+
+.blue-top{
+  grid-area: blue-topO;
+  background-color: #2196f3;
+}
+
+.yellow{
+  grid-area: yellowO;
+  background-color: #ffc107;
+}
+
+.brown{
+  grid-area: brownO;
+  background-color: #795548;
+}
+
+.orange{
+  grid-area: orangeO;
+  background-color: #ff5722;
+}
+
+.indigo{
+  grid-area: indigoO;
+  background-color: #3f51b5;
+}
+
+.red{
+  grid-area: redO;
+  background-color: #ff5252;
+}
+
+.pink{
+  grid-area: pinkO;
+  background-color: #e91e63;
+}
+
+.purple{
+  grid-area: purpleO;
+  background-color: #9c27b0;
+}
+
+.blue-bottom{
+  grid-area: blue-bottomO;
+  background-color: #32bbc5;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* .mainContainer{
+  display: grid;
+  grid-template-rows: 6fr 4fr;
+  height: 100vh;
+  width: 360px;
+  place-self: center;
+}
+.topContainer{
+  background-color: #32bbc5;
+}
+
+.bottomContainer{
+  background-color: #3ed83b;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+}
+.bottom_top_Container{
+  background-color: #be2c2c;
+}
+.bottom_bottom_Container{
+  background-color: #1430d1;
+}
+#root{
+  display: grid;
+} */
+/* .mainContainer{
+  display: flex;
+  flex-direction: column;
+  background-color: #ffff;
+  width: 720px;
+  height: 100vh;
+}
+.topLeftContainer,.topRightContainer{
+  width: 50%;
+  height: 100%;
+}
+.topUpperRightContainer{
+  height: 30%;
+  background-color: #32bbc5;
+}
+.topContainer{
+  display: flex;
+  height: 70%;
+}
+.bottomContainer{
+  height: 30%;
+}
+.topUpperContainer{
+  background-color: #3ed83b;
+  height: 50%;
+}
+.topBottomContainer{
+  background-color: #c44242;
+  height: 50%;
+}
+.topBottomRightContainer{
+ height: 70%;
+  display: flex;
+}
+.topBottom_left_RightContainer,.topBottom_rightContainer{
+  display: flex;
+  width: 50%;
+  flex-direction: column;
+  height: 100%;
+}
+.topBottom_left_top_Container{
+  background-color: #f5e142;
+  height: 70%;
+}
+.topBottom_left_bottomContainer{
+  background-color: #bd3260;
+  height: 30%;
+}
+.topBottom_right_top_Container{
+  background-color: #cd8527;
+  height: 30%;
+}
+.topBottom_right_bottomContainer{
+  background-color: #6e31c9;
+  height: 70%;
+}
+.bottomContainer{
+  display: flex;
+  flex-direction: column;
+} */
+
+/* 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #eee;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+.container {
+  width: 380px;
+
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 90px;
+  gap: 8px;
+}
+
+.tile {
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.green {
+  background: #4caf50;
+}
+
+.orange {
+  background: #ff5722;
+}
+
+.blue {
+  background: #2196f3;
+}
+
+.yellow {
+  background: #ffc107;
+}
+
+.brown {
+  background: #795548;
+}
+
+.indigo {
+  background: #3f51b5;
+}
+
+.red {
+  background: #ff5252;
+}
+
+.pink {
+  background: #e91e63;
+}
+
+.purple {
+  background: #9c27b0;
+}
+
+/* Sizes */
+
+/* .large {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+.wide {
+  grid-column: span 2;
+}
+
+.tall {
+  grid-row: span 2;
+}
+
+.wide-bottom {
+  grid-column: span 4;
+} */ 

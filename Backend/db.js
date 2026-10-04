@@ -1,0 +1,1 @@
+MONGOURI="mongodb+srv://dineshone1997_db_user:CBFrkHKREpkcCqwl@learningcluster.flgibyi.mongodb.net/?appName=LearningCluster"
