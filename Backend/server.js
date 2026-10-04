@@ -1,99 +1,67 @@
-const express = require('express');
-// const cors = require("cors");
-// const mongoose = require("mongoose");
+require("dotenv").config();
 
-const {MongoClient}= require("mongodb")
+const cors = require("cors");
+const express = require("express");
+const { connectDatabase } = require("./db");
 
-const client = new MongoClient("mongodb+srv://dineshone1997_db_user:CBFrkHKREpkcCqwl@learningcluster.flgibyi.mongodb.net/?appName=LearningCluster");
+function createApp() {
+  const app = express();
 
-const dbName = "sample_mflix";
+  app.use(cors({ origin: process.env.CORS_ORIGIN || "*" }));
+  app.use(express.json());
 
-async function main(){
-  await client.connect();
-  console.log("BD connected successfully");
-  const db = client.db(dbName);
-  const collection = db.collection("users");
+  app.get("/", (req, res) => {
+    res.json({ name: "dinesh" });
+  });
 
+  app.get("/health", (req, res) => {
+    res.json({ status: "ok" });
+  });
 
-  const findResult = await collection.find({}).toArray();
-
-  console.log("finalresult====>", findResult);
-
+  return app;
 }
 
-main();
+async function startServer() {
+  const port = Number(process.env.PORT || 5000);
+  const client = process.env.MONGO_URI
+    ? await connectDatabase(
+        process.env.MONGO_URI,
+        process.env.MONGO_DB || "sample_mflix",
+      )
+    : null;
 
-const app = express();
+  if (client) {
+    console.log("MongoDB connected successfully");
+  } else {
+    console.log("MONGO_URI is not configured; starting without MongoDB");
+  }
 
-app.get("/",(req, res)=>{
-  res.send({
-    name:"dinesh"
+  const server = createApp().listen(port, () => {
+    console.log(`Server listening on port ${port}`);
   });
-})
 
-app.listen(5000, ()=>{
-  console.log("port 5000 is running fine")
-});
+  const shutdown = () => {
+    server.close(async (error) => {
+      if (error) {
+        console.error("HTTP server shutdown failed:", error);
+        process.exitCode = 1;
+      }
 
+      if (client) {
+        await client.close();
+      }
+    });
+  };
 
+  process.once("SIGINT", shutdown);
+  process.once("SIGTERM", shutdown);
+}
 
+if (require.main === module) {
+  startServer().catch((error) => {
+    console.error("Backend startup failed:", error);
+    process.exitCode = 1;
+  });
+}
 
-// -------------------------------------------------------------------
-
-// const PORT = process.env.PORT || 6000;
-
-
-// mongoose
-//   .connect(process.env.MONGO_URI)
-//   .then(() => {
-//     console.log("MongoDB connected");
-
-//     app.listen(PORT, () => {
-//       console.log(`Server running on http://localhost:${PORT}`);
-//     });
-//   })
-//   .catch((error) => {
-//     console.error("MongoDB connection failed:", error);
-//   });
-
-
-
-
-
-
-
-
-
-
-
-
-
-// HTTP
-// const http = require("http");
-
-// require('dotenv').config();
-
-// const app = express();
-
-// app.use(cors());
-// app.use(express.json());
-// console.log("------>app",app.use);
-
-
-// const serv = http.createServer((req, res)=>{
-//   let methord = req.method;
-//   let url = req.url;
-//   if(methord == "GET" && url == "/"){
-//     console.log("Home is loaded")
-//     res.end("Home page");
-//   }else if( url == "/profile"){
-//     console.log("profile")
-//     res.end("This is profile page so dont navigate to inner");
-//   }else if(url == "/json"){
-//     res.end(JSON.stringify({
-//       name:"dinesh",
-//       place: "nallur",
-//       date: "11.10.1997"
-//     }))
-//   }
-// });
+module.exports = { createApp, startServer };

@@ -1,1 +1,16 @@
-MONGOURI="mongodb+srv://dineshone1997_db_user:CBFrkHKREpkcCqwl@learningcluster.flgibyi.mongodb.net/?appName=LearningCluster"
+const { MongoClient } = require("mongodb");
+
+async function connectDatabase(uri, databaseName) {
+  const client = new MongoClient(uri);
+
+  try {
+    await client.connect();
+    await client.db(databaseName).command({ ping: 1 });
+    return client;
+  } catch (error) {
+    await client.close();
+    throw error;
+  }
+}
+
+module.exports = { connectDatabase };
