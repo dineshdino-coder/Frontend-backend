@@ -1,0 +1,63 @@
+.mainContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.shoppingCart {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.securitySystem {
+
+}
+
+.headerMobile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Gilroy-Bold;
+  font-weight: 400;
+  font-size: 31.88px;
+  line-height: 110.00000000000001%;
+  letter-spacing: -0.06px;
+  text-align: center;
+  vertical-align: middle;
+  height: 75px;
+}
+.catHeader {
+  font-family: Gilroy-Medium;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 100%;
+  letter-spacing: 1.6px;
+  vertical-align: middle;
+  text-transform: uppercase;
+  height: 75px;
+}
+
+@media (min-width: 480px) {
+  .mainContainer {
+    flex-direction: column;
+  }
+}
+
+/* Tablet portrait (iPad, most tablets in portrait) */
+@media (min-width: 768px) {
+  .mainContainer {
+    flex-direction: column;
+  }
+}
+
+/* Tablet landscape / small laptop */
+@media (min-width: 1024px) {
+  .mainContainer {
+    flex-direction: column;
+  }
+}
+
+/* Desktop */
+@media (min-width: 1280px) {
+  /* ... */
+}

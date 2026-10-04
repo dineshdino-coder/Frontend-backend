@@ -1,7 +1,9 @@
 import "./App.css";
 import { useEffect, useState } from "react";
 import Button from "@mui/material/Button";
-import Taskmodal from "./Dialog";
+import Taskmodal from "./Dialog.jsx";
+import VscodeComponent from "./myComponents/VscodeComponent.jsx";
+
 
 
 export default function App() {
@@ -10,13 +12,36 @@ export default function App() {
 
   useEffect(() => {
     try {
-      const savedData = localStorage.getItem("userDetails");
-      if (!savedData) {
-        setUserDetails([]);
-        return;
-      }
+      // const savedData = localStorage.getItem("userDetails");
+      // if (!savedData) {
+      //   setUserDetails([]);
+      //   return;
+      // }
 
-      const parsedData = JSON.parse(savedData);
+      // const parsedData = JSON.parse(savedData);
+      const parsedData = [
+        {
+          title: "Wakeup",
+          description: "must need to wakup early",
+          status: "pending",
+          priority: "low",
+          date: "11/10/1997",
+        },
+        {
+          title: "Bath",
+          description: "Must bath early",
+          status: "Done",
+          priority: "medium",
+          date: "12/10/1997",
+        },
+        {
+          title: "GYM",
+          description: "must go for GYM",
+          status: "in-progress",
+          priority: "High",
+          date: "3/10/1997",
+        },
+      ];
       setUserDetails(Array.isArray(parsedData) ? parsedData : []);
     } catch (error) {
       console.error("Failed to parse user details:", error);
@@ -32,176 +57,72 @@ export default function App() {
     setOpenModal(false);
   };
 
+  const editData = (data) => {
+    console.log(data);
+  };
+  const deleteData = (data) => {
+    console.log(data)
+  };
   return (
     <>
-      <table>
-        <thead>
-          <tr>
-            <th>S.NO</th>
-            <th>Task Title</th>
-            <th>Description</th>
-            <th>Status</th>
-            <th>Priority</th>
-            <th>Due Date</th>
-          </tr>
-        </thead>
-        <tbody>
-          {userDetails && userDetails.length > 0 ? (
-            userDetails.map((respo, index) => {
-              return (
-                <tr key={respo.id}>
-                  <td>{index + 1}</td>
-                  <td>{respo.title}</td>
-                  <td>{respo.description}</td>
-                  <td>{respo.status}</td>
-                  <td>{respo.prio}</td>
-                  <td>{respo.date}</td>
-                </tr>
-              );
-            })
-          ) : (
-            <tr>
-              <td colSpan={6}>
-                No data is present in the table. Please add data.
-                <Button
-                  variant="contained"
-                  onClick={() => {
-                    createNew();
-                  }}
-                  style={{ marginLeft: 12 }}
-                >
-                  Add data
-                </Button>
-              </td>
-            </tr>
-          )}
-        </tbody>
-      </table>
-      <Taskmodal open={openModal} onClose={closeModal} />
+      <VscodeComponent/>
     </>
+    // <div className="Container">
+    //   <div>
+    //     <table className="table_data">
+    //       <thead>
+    //         <tr>
+    //           <th>S.NO</th>
+    //           <th>Task Title</th>
+    //           <th>Description</th>
+    //           <th>Status</th>
+    //           <th>Priority</th>
+    //           <th>Due Date</th>
+    //           <th>Actions</th>
+    //         </tr>
+    //       </thead>
+    //       <tbody>
+    //         {userDetails && userDetails.length > 0 ? (
+    //           userDetails.map((respo, index) => {
+    //             return (
+    //               <tr key={respo.id}>
+    //                 <td>{index + 1}</td>
+    //                 <td>{respo.title}</td>
+    //                 <td>{respo.description}</td>
+    //                 <td>{respo.status}</td>
+    //                 <td>{respo.priority}</td>
+    //                 <td>{respo.date}</td>
+    //                 <td>
+    //                   <div className="actions">
+    //                     <div onClick={() => editData(respo)}> Edit </div>
+    //                     <div onClick={() => deleteData(respo)}>Delete </div>
+    //                   </div>
+    //                 </td>
+    //               </tr>
+    //             );
+    //           })
+    //         ) : (
+    //           <tr>
+    //             <td colSpan={6}>
+    //               No data is present in the table. Please add data.
+    //             </td>
+    //           </tr>
+    //         )}
+    //       </tbody>
+    //     </table>
+    //   </div>
+    //   <div>
+    //     <Button
+    //       variant="contained"
+    //       onClick={() => {
+    //         createNew();
+    //       }}
+    //       style={{ marginLeft: 12 }}
+    //     >
+    //       Add data
+    //     </Button>
+    //   </div>
+    //   <Taskmodal open={openModal} onClose={closeModal} />
+    // </div>
   );
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// function App() {
-//   const tiles = [
-//     { id: 1, className: "tile green large" },
-//     { id: 2, className: "tile blue wide" },
-//     { id: 3, className: "tile orange large" },
-//     { id: 4, className: "tile yellow tall" },
-//     { id: 5, className: "tile brown" },
-//     { id: 6, className: "tile indigo tall" },
-//     { id: 7, className: "tile red" },
-//     { id: 8, className: "tile pink wide" },
-//     { id: 9, className: "tile purple" },
-//     { id: 10, className: "tile blue wide-bottom" },
-//   ];
-
-//   return (
-//     <div className="container">
-//       {tiles.map((tile) => (
-//         <div key={tile.id} className={tile.className}>
-//           {tile.id}
-//         </div>
-//       ))}
-//     </div>
-//   );
-// }
-
-// export default App;
-
-// // import React from "react";
-// import './App.css';
-// import './App.css';
-// import axios from "axios";
-// import { useState, useEffect } from "react";
-// function App() {
-
-//   function thisFunction() {
-//     console.log("thisFunction called",this);
-
-//   }
-//   thisFunction();
-
-// useEffect(()=>{
-//   axios.get("http://localhost:5000/testing")
-//     .then((response) => {
-//       // alert("adf")
-//       console.log(response.data.message);
-//     });
-// },[])
-// return (
-//   <>
-//     <div className="container">
-//       <div className="tile green">1</div>
-//       <div className="tile blue-top">2</div>
-//       <div className="tile orange">3</div>
-//       <div className="tile yellow">4</div>
-//       <div className="tile brown">5</div>
-//       <div className="tile red">6</div>
-//       <div className="tile indigo">7</div>
-//       <div className="tile pink">8</div>
-//       <div className="tile purple">9</div>
-//       <div className="tile blue-bottom">10</div>
-//     </div>
-
-{
-  /* <div className="mainContainer">
-        <div className="topContainer">
-          <div className="topLeftContainer">
-            <div className="topUpperContainer"></div>
-            <div className="topBottomContainer"></div>
-          </div>
-          <div className="topRightContainer">
-            <div className="topUpperRightContainer"></div>
-            <div className="topBottomRightContainer">
-              <div className="topBottom_left_RightContainer">
-                <div className="topBottom_left_top_Container"></div>
-                <div className="topBottom_left_bottomContainer"></div>
-              </div>
-              <div className="topBottom_rightContainer">
-                <div className="topBottom_right_top_Container"></div>
-                <div className="topBottom_right_bottomContainer"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="bottomContainer">
-          <div className="bottom_top_Container"></div>
-          <div className="bottom_bottom_Container"></div>
-        </div>
-      </div> */
-}
-//     </>
-//   );
-// }
-
-// export default App;
